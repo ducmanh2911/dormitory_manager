@@ -1,0 +1,39 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME}% !-d
+RewriteCond %{REQUEST_FILENAME}% !-f
+RewriteCond %{REQUEST_FILENAME}% !-l
+
+
+# login
+RewriteRule forget-password$ index.php?role=admin&controller=user&method=forgetPassword
+RewriteRule login$ index.php?role=admin&controller=user&method=login
+
+##
+###### ROLE ADMIN 
+##
+
+# home
+RewriteRule admin/$ index.php?role=admin&controller=home&method=index
+
+# bill admin
+RewriteRule admin/bill/create-electric-water$ index.php?role=admin&controller=bill&method=createEWB
+RewriteRule admin/bill/list-electric-water$ index.php?role=admin&controller=bill&method=indexEWB
+RewriteRule admin/bill/edit-electric-water/([0-9]+)$ index.php?role=admin&controller=bill&method=editEWB&id=$1
+RewriteRule admin/bill/delete-electric-water/([0-9]+)$ index.php?role=admin&controller=bill&method=deleteEWB&id=$1
+
+RewriteRule admin/bill/create-invoice$ index.php?role=admin&controller=bill&method=createInvoice
+RewriteRule admin/bill/list-invoice$ index.php?role=admin&controller=bill&method=invoice
+RewriteRule admin/bill/edit-invoice/([0-9]+)$ index.php?role=admin&controller=bill&method=editInvoice&id=$1
+RewriteRule admin/bill/delete-invoice/([0-9]+)$ index.php?role=admin&controller=bill&method=deleteInvoice&id=$1
+RewriteRule admin/bill/view-details-invoice/([0-9]+)$ index.php?role=admin&controller=bill&method=invoiceDetails&id=$1
+
+RewriteRule admin/([a-z]+)/([a-z]+)$ index.php?role=admin&controller=$1&method=$2
+RewriteRule admin/([a-z]+)/([a-z]+)/([A-Z0-9]+)$ index.php?role=admin&controller=$1&method=$2&id=$3
+
+#
+# ROLE STUDENT
+#
+
+RewriteRule ^([a-z]+)/([a-z]+)$ index.php?controller=$1&method=$2
+RewriteRule ^([a-z]+)/([a-z]+)/([A-Z0-9]+)$ index.php?controller=$1&method=$2&id=$3
